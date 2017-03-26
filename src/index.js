@@ -6,6 +6,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+// import react-router
+import { Router, Route, Link, browserHistory, hashHistory } from 'react-router';
+
 // import redux
 import { Provider, connect } from 'react-redux';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
@@ -46,14 +49,17 @@ const {initialStore, reducersList, actionsList} = features.reduce((hash, currFea
  */
 const appReducer = combineReducers(reducersList);
 
-// import main app
-import App from './components/app';
-
+/*
+ *  CREATE STORE 
+ */
 const appStore = createStore(
     appReducer,
     initialStore,
     applyMiddleware(ReduxThunk)
 );
+
+// import root app
+import App from './components/app';
 
 /*
  * LINK APP WITH STORE 
@@ -67,6 +73,16 @@ const ReduxApp = connect((state) => {
  *  BUILD
  */
 
+// import top level components
+import Test from './components/test';
+
+// props passer utility
+const throwProps = (Component, additionalProps) => (props) => (<Component {...props} {...additionalProps} />);
+
 ReactDOM.render(<Provider store={appStore}>
-    <ReduxApp actions={actionsList} />
+    <Router history={browserHistory}>
+        <Route path="/" component={throwProps(ReduxApp, {actions: actionsList})}>
+		    <Route path="/test" component={throwProps(Test, {actions: actionsList})} />	
+        </Route>
+    </Router>
 </Provider>, document.querySelector('.container'));
