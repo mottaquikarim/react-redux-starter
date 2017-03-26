@@ -31,3 +31,29 @@ Breaking stuff up was **such** a pain with redux I decided to go *feature* based
 > package.json
 > webpack.config.js
 ```
+
+## Adding Features
+
+To add a new feature, create a new **feature-** folder. It should have at least three files:
+
+1. [feature_name]Store.js
+2. [feature_name]Actions.js
+3. [feature_name]Reducer.js
+
+In your `index.js` file, do this:
+
+```js
+// feature-auth
+import authStore from './feature-auth/authStore';
+import authReducer from './feature-auth/authReducer';
+import authActions from './feature-auth/authActions';
+
+// add to features list
+features.push({
+    store: { authStore, },
+    reducer: { authStore: authReducer, },
+    actions: { authActions, }
+});
+```
+
+Just replace `auth` with your feature name. You can access actions from inside the app directly through `this.props.actions`.
