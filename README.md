@@ -59,3 +59,8 @@ features.push({
 Just replace `auth` with your feature name. You can access actions from inside the app directly through `this.props.actions`.
 
 Remember to include the **`featuers.push`** block, this is what incorporates your store, actions, and reducer functions into the App automatically.
+
+## References and Resources
+
+1. [Redux Docs](http://redux.js.org/)
+2. [Simple/Easy Redux Tutorial](https://medium.com/@firasd/quick-start-tutorial-using-redux-in-react-apps-89b142d6c5c1#.cad4xl8w8)
