@@ -57,3 +57,5 @@ features.push({
 ```
 
 Just replace `auth` with your feature name. You can access actions from inside the app directly through `this.props.actions`.
+
+Remember to include the **`featuers.push`** block, this is what incorporates your store, actions, and reducer functions into the App automatically.
